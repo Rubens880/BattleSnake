@@ -29,6 +29,7 @@ form.addEventListener('submit', (e) => {
 });
 
 function refresh(snakeDTO) {
+    console.log(snakeDTO)
     form.author.value = snakeDTO.author;
     form.color.value = snakeDTO.color;
     form.head.value = snakeDTO.head;
@@ -42,6 +43,8 @@ for (let input of formItems) {
 }
 
 service.getSnake().then(currentValues => {
+    console.log(currentValues);
+
     refresh(currentValues);
 
     for (let input of formItems) {
