@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 public class Snake implements Serializable {
 
-    private static Snake my_snake = new Snake();
-
     private String apiversion = "1";
     private String color = "#888888";
     private String head = "beluga" ;
@@ -18,17 +16,6 @@ public class Snake implements Serializable {
         this.color = color;
         this.head = head;
         this.tail = tail;
-    }
-
-    public static Snake getSnake() {
-        return my_snake;
-    }
-
-    public void setMy_snake(Snake snake) {
-        my_snake = snake;
-        tail = snake.tail;
-        head = snake.head;
-        color = snake.getColor();
     }
 
     public String getColor() {

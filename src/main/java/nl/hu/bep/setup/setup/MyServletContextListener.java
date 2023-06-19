@@ -19,7 +19,7 @@ public class MyServletContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         System.out.println("Initializing application");
         try {
-            PersistenceManager.loadSnakeFromFile();
+            PersistenceManager.loadBattleSnakeFromFile();
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -34,7 +34,7 @@ public class MyServletContextListener implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         try {
-            PersistenceManager.saveSnakeToFile();
+            PersistenceManager.saveBattleSnakeToFile();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
