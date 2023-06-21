@@ -3,6 +3,7 @@
 // Uiteraard -mag- je deze files wel aanpassen, want heel fraai is deze UI nou ook weer niet:)
 import SnakeService from "./snake-service.js";
 
+
 let service = new SnakeService();
 let form = document.forms.snake;
 let formItems = document.querySelectorAll('input:not([disabled=true]), select');
@@ -42,12 +43,16 @@ for (let input of formItems) {
     input.disabled = true;
 }
 
-service.getSnake().then(currentValues => {
-    console.log(currentValues);
+    service.getSnake().then(currentValues => {
+        console.log(currentValues);
+        if (currentValues === null) {
+            console.log("currentvalues is null")
+            return;
+        }
 
-    refresh(currentValues);
+        refresh(currentValues);
 
-    for (let input of formItems) {
-        input.disabled = false;
-    }
-});
+        for (let input of formItems) {
+            input.disabled = false;
+        }
+    });

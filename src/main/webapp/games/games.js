@@ -42,8 +42,17 @@ function refresh() {
     });
 }
 
-refresh().then(() => {
-    if (window.location.hash) {
-        loadGame(window.location.hash)
+//Controleert of de gebruiker is ingelogd met een geldig jwt zo wel dan wordt de pagina ingeladen.
+//Zo niet wordt de gebruiker terug gestuurd naar de homepage.
+gamesService.checkLoggedIn().then((response) => {
+    if (response === true) {
+        refresh().then(() => {
+            if (window.location.hash) {
+                loadGame(window.location.hash)
+            }
+        });
     }
-});
+})
+
+
+

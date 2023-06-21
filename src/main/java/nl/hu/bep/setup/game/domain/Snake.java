@@ -32,16 +32,12 @@ public class Snake implements Serializable {
 
     public String getApiversion() {return apiversion;}
 
-    public void setColor(String color) {
+
+    public void updateSnake(String color, String head, String tail) {
         this.color = color;
-    }
-
-    public void setHead(String head) {
         this.head = head;
-    }
-
-    public void setTail(String tail) {
         this.tail = tail;
+
     }
 
 

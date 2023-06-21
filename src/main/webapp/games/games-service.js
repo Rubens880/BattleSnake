@@ -1,4 +1,20 @@
+import LoginService from "../login-service.js";
+
 export default class GamesService {
+
+    //Controleert via de LoginService of de gebruiker is ingelogd.
+    async checkLoggedIn() {
+        const loginService = new LoginService();
+
+        return loginService.getUser().then(user => {
+            if (!user) {
+                window.location.replace("/");
+                return false;
+            }
+            return true;
+        })
+        }
+
     async getGameIds() {
         //TODO: fetch alle games van de de service, idealiter zonder alle details
         //TODO: ids van games opgeven via een fetch

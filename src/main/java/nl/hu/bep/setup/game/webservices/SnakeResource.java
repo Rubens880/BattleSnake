@@ -6,6 +6,7 @@ import nl.hu.bep.setup.game.domain.BattleSnake;
 import nl.hu.bep.setup.game.domain.Game;
 import nl.hu.bep.setup.game.domain.Snake;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -19,18 +20,19 @@ public class SnakeResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getSnake() {
         System.out.println(BattleSnake.getMy_BattleSnake().getSnake().toString());
+        System.out.println("getSnake aangeroepen");
         return Response.ok(BattleSnake.getMy_BattleSnake().getSnake()).build();
     }
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("user")
     public Response changeSnake(SnakeDTO snakeDTO) {
+        System.out.println("changeSnake aangeroepen.");
 
         Snake snake = BattleSnake.getMy_BattleSnake().getSnake();
-        snake.setColor(snakeDTO.color);
-        snake.setHead(snakeDTO.head);
-        snake.setTail(snakeDTO.tail);
+        snake.updateSnake(snakeDTO.color, snakeDTO.head, snakeDTO.tail);
 
         return Response.ok(snake).build();
     }
