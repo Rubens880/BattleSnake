@@ -123,9 +123,6 @@ public class SnakeResource {
         @JsonProperty("you")
         public YouDTO youDTO;
 
-
-
-
     }
     @JsonIgnoreProperties(ignoreUnknown = true)
     private static class GameDTO {

@@ -37,25 +37,11 @@ public class AuthenticationResource {
 
     }
 
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("validate")
-    public Response validateUser(ValidateRequest validateRequest) {
 
-
-
-
-        return Response.ok(validateRequest).build();
-    }
-
-    private static class ValidateRequest{
-        public String JWT;
-    }
 
     private String createToken(String username, String role) throws JwtException {
         Calendar expiration = Calendar.getInstance();
-        expiration.add(Calendar.MINUTE, 30);
+        expiration.add(Calendar.MINUTE, 10);
 
 
         return Jwts.builder()

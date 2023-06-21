@@ -10,8 +10,8 @@ let updateBtn = document.getElementById('update-btn');
 
 function update() {
     return service.updateSnake({
-        color: form.color.value,
-        head: form.head.value,
+            color: form.color.value,
+            head: form.head.value,
         tail: form.tail.value
     }).then(() => {
         updateBtn.disabled = true;

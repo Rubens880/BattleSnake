@@ -2,7 +2,6 @@ export default class LoginService {
     isLoggedIn() {
         //TODO: hoe ga je bepalen of iemand ingelogd is (geweest)?
         if (window.localStorage.getItem("myJWT") === null) {
-            console.log("test")
             return false;
         }
         return true;
@@ -33,17 +32,37 @@ export default class LoginService {
         //TODO: deze GET method test je token op server-side problemen. Je kunt client-side op zich wel 'ingelogd' zijn
         //maar het zou altijd zomaar kunnen dat je token verlopen is, of dat er server-side iets anders aan de hand is.
         //Dus het is handig om te checken met een -echte fetch- of je login-token wel echt bruikbaar is.
-        return fetch("")
+        if (window.localStorage.getItem("myJWT") === null) {
+            return Promise.resolve(null);
+        }
 
-        return Promise.resolve(true);
+        const options = {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' +  window.localStorage.getItem("myJWT")}
+        }
+
+        return fetch("/restservices/user", options).then((response) => {
+            console.log(response)
+            if (response.ok) {
+                return response.json();
+            }
+
+            if (response.status === 401) {
+                console.log("Token not valid!");
+                return null;
+            }
+
+            }
+        ).catch((error) => {
+            console.error("Token not valid!", error);
+        })
+
     }
 
     logout() {
         //TODO: hoe ga je eigenlijk iemand 'uitloggen'?
-        // if (window.localStorage.getItem("myJWT") !== null) {
-        //     window.localStorage.removeItem("myJWT");
-        // }
-        console.log("Kaas")
         return Promise.resolve(localStorage.removeItem("myJWT"));
     }
 }
