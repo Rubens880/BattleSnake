@@ -10,11 +10,14 @@ import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.lang.reflect.Array;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Path("snake")
 public class SnakeResource {
+    private String lastMove;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -49,6 +52,10 @@ public class SnakeResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response startGame(GameDataDtos gameDataDtos) {
 
+        System.out.println(gameDataDtos.youDTO.name + " " + gameDataDtos.youDTO.length + " "
+                            + gameDataDtos.youDTO.body + " " + gameDataDtos.youDTO.head + " " +
+                            " " + gameDataDtos.youDTO.health);
+
         Game game = new Game(gameDataDtos.gameDTO.id, gameDataDtos.youDTO.name);
         BattleSnake.getMy_BattleSnake().addGame(game);
         return Response.ok().build();
@@ -60,37 +67,15 @@ public class SnakeResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response move(GameDataDtos gameDataDtos) {
-        double number =  Math.random() * 10;
-        Map<String, String> messages = new HashMap<>();
+        Snake snake = BattleSnake.getMy_BattleSnake().getSnake();
         Game game = BattleSnake.getMy_BattleSnake().getGameById(gameDataDtos.gameDTO.id);
-        if (game == null) {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
 
 
-            if (number < 2) {
-                messages.put("move", "right");
-                messages.put("shout", "Going right!!!");
+        Map<String, String> move = snake.getNextMove(gameDataDtos);
 
-            } else if (number < 4) {
-                messages.put("move", "left");
-                messages.put("shout", "Going left!!!");
+        game.addMove(move.get("move"));
 
-
-            } else if (number < 6) {
-                messages.put("move", "up");
-                messages.put("shout", "Going up!!!");
-
-            } else {
-                messages.put("move", "down");
-                messages.put("shout", "Going down!!!");
-            }
-
-
-        return Response.ok().entity(messages).build();
-
-
-
+        return Response.ok().entity(move).build();
     }
 
 
@@ -115,26 +100,48 @@ public class SnakeResource {
 
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private static class GameDataDtos {
+    public static class GameDataDtos {
         @JsonProperty("game")
         public GameDTO gameDTO;
 
         @JsonProperty("turn")
         public int turn;
 
+        @JsonProperty("board")
+        public BoardDTO boardDTO;
+
         @JsonProperty("you")
         public YouDTO youDTO;
 
     }
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private static class GameDTO {
+    public static class GameDTO {
         public String id;
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private static class YouDTO {
+    public static class BoardDTO {
+        public int height;
+
+        public int width;
+
+        public List<Map<String, Integer>> food;
+
+
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class YouDTO {
         public String name;
         public int length;
+
+        public int health;
+
+        public List<Map<String, Integer>> body;
+
+        public Map<String, Integer> head;
+
+
     }
 
 

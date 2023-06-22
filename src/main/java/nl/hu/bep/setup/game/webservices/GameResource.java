@@ -3,6 +3,7 @@ package nl.hu.bep.setup.game.webservices;
 import nl.hu.bep.setup.game.domain.BattleSnake;
 import nl.hu.bep.setup.game.domain.Game;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -14,6 +15,7 @@ public class GameResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("user")
     public Response getGamesNames() {
         List<Game> games = BattleSnake.getMy_BattleSnake().getGames();
         List<String> gameIds = new ArrayList<>();
@@ -27,6 +29,7 @@ public class GameResource {
     @GET
     @Path("game/{id}")
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("user")
     public Response getGameByID(@PathParam("id") String id) {
         Game game = BattleSnake.getMy_BattleSnake().getGameById(id);
         System.out.println(game);
@@ -41,6 +44,7 @@ public class GameResource {
     @DELETE
     @Path("game/{id}")
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("user")
     public Response deleteGame(@PathParam("id") String id) {
         Game game = BattleSnake.getMy_BattleSnake().getGameById(id);
 

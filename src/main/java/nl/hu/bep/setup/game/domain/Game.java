@@ -2,6 +2,7 @@ package nl.hu.bep.setup.game.domain;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game implements Serializable {
@@ -14,7 +15,7 @@ public class Game implements Serializable {
 
     private String snakeName;
 
-    private List<String > moves;
+    private List<String> moves = new ArrayList<>();
 
     public Game() {
 
@@ -51,6 +52,10 @@ public class Game implements Serializable {
 
     public void setSnakeName(String snakeName) {
         this.snakeName = snakeName;
+    }
+
+    public List<String> getMoves() {
+        return moves;
     }
 
     public void addMove(String move) {
