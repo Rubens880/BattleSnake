@@ -3,6 +3,7 @@ package nl.hu.bep.setup.game.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Game implements Serializable {
@@ -15,7 +16,7 @@ public class Game implements Serializable {
 
     private String snakeName;
 
-    private List<String> moves = new ArrayList<>();
+    private HashMap<String, Integer> moves = new HashMap<>();
 
     public Game() {
 
@@ -24,6 +25,10 @@ public class Game implements Serializable {
     public Game(String gameId, String snakeName) {
         this.gameId = gameId;
         this.snakeName = snakeName;
+        moves.put("right",0);
+        moves.put("up", 0);
+        moves.put("left", 0);
+        moves.put("down", 0);
     }
 
     public String getGameId() {
@@ -54,12 +59,12 @@ public class Game implements Serializable {
         this.snakeName = snakeName;
     }
 
-    public List<String> getMoves() {
+    public HashMap<String, Integer> getMoves() {
         return moves;
     }
 
     public void addMove(String move) {
-        this.moves.add(move);
+        moves.put(move, moves.get(move) + 1);
     }
 
     @Override
