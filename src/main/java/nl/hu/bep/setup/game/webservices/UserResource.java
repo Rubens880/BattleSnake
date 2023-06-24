@@ -1,6 +1,5 @@
 package nl.hu.bep.setup.game.webservices;
 
-import io.jsonwebtoken.ExpiredJwtException;
 import nl.hu.bep.setup.security.MyUser;
 
 import javax.ws.rs.*;
@@ -14,6 +13,7 @@ import javax.ws.rs.core.SecurityContext;
 @Path("user")
 public class UserResource {
 
+    //controleert of jwt valid is zo ja dan geeft die de user terug
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

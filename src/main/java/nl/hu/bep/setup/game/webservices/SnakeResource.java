@@ -17,12 +17,15 @@ import java.util.Map;
 public class SnakeResource {
     private String lastMove;
 
+
+    //haalt snake op
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getSnake() {
         return Response.ok(BattleSnake.getMy_BattleSnake().getSnake()).build();
     }
 
+    //Veranderd snake values
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -40,6 +43,7 @@ public class SnakeResource {
         public String head;
     }
 
+    //Methode slaat data van game op bij start
     @POST
     @Path("start")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -52,6 +56,7 @@ public class SnakeResource {
 
     }
 
+    //move method geeft de move terug die de snake moet doen
     @POST
     @Path("move")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -68,7 +73,7 @@ public class SnakeResource {
         return Response.ok().entity(move).build();
     }
 
-
+    //Slaat alle data op bij einde game
     @POST
     @Path("end")
     @Consumes(MediaType.APPLICATION_JSON)

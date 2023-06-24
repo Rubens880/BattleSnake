@@ -13,6 +13,7 @@ import java.util.List;
 @Path("games")
 public class GameResource {
 
+    //Haalt alle game namen/ids op
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed("user")
@@ -26,6 +27,7 @@ public class GameResource {
     }
 
 
+    //Haalt game op bij id
     @GET
     @Path("game/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -41,6 +43,8 @@ public class GameResource {
         return Response.ok(game).build();
     }
 
+
+    //Verwijderd game met id
     @DELETE
     @Path("game/{id}")
     @Produces(MediaType.APPLICATION_JSON)

@@ -27,6 +27,7 @@ public class BattleSnake implements Serializable {
         this.games = battleSnake.getGames();
     }
 
+    //voegt game to aan lijst met games
     public void addGame(Game game) {
         games.add(game);
     }
@@ -47,6 +48,7 @@ public class BattleSnake implements Serializable {
         this.games = games;
     }
 
+    //Haalt game op bij meegegeven id
     public Game getGameById(String id) {
 
 
@@ -58,6 +60,7 @@ public class BattleSnake implements Serializable {
         return null;
     }
 
+    //verwijderd game met uit lijst met games
     public boolean deleteGame(Game game) {
         for (Game game1 : games) {
             if (game1.equals(game)) {

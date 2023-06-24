@@ -1,4 +1,5 @@
 export default class LoginService {
+    //Controleert of gebruiker jwt heeft in localStorage
     isLoggedIn() {
         //TODO: hoe ga je bepalen of iemand ingelogd is (geweest)?
         if (window.localStorage.getItem("myJWT") === null) {
@@ -7,6 +8,7 @@ export default class LoginService {
         return true;
     }
 
+    //Logt de gebruiker in met post methode en voegt jwt toe zodra gelukt
     login(user, password) {
         //TODO: inloggen met POST
         let data = {
@@ -28,6 +30,7 @@ export default class LoginService {
         })
     }
 
+    //Haalt user op met de jwt
     getUser() {
         //TODO: deze GET method test je token op server-side problemen. Je kunt client-side op zich wel 'ingelogd' zijn
         //maar het zou altijd zomaar kunnen dat je token verlopen is, of dat er server-side iets anders aan de hand is.
@@ -60,6 +63,7 @@ export default class LoginService {
 
     }
 
+    //Haalt jwt uit storage en loguit voor user
     logout() {
         //TODO: hoe ga je eigenlijk iemand 'uitloggen'?
         return Promise.resolve(localStorage.removeItem("myJWT"));

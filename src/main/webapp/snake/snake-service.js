@@ -47,6 +47,7 @@ export default class SnakeService {
 
     }
 
+    //Update de snake met meegegeven values
     async updateSnake(updatedSnake) {
         //TODO: update je slang aan de server-kant met de nieuwe gegevens
 

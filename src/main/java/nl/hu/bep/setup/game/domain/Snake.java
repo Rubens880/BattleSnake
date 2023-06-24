@@ -36,6 +36,7 @@ public class Snake implements Serializable {
 
     public String getApiversion() {return apiversion;}
 
+    //Zoekt uit wat de slimste move is om te doen op dat moment
     public Map<String, String> getNextMove(SnakeResource.GameDataDtos gameDataDtos) {
         List<String> possibleMoves = new ArrayList<>(List.of("right","left","up","down"));
         int mapHeight = gameDataDtos.boardDTO.height;
@@ -110,7 +111,7 @@ public class Snake implements Serializable {
         return move;
     }
 
-
+    //Update de snake values (Color,head, tail)s
     public void updateSnake(String color, String head, String tail) {
         this.color = color;
         this.head = head;

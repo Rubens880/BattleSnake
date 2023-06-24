@@ -15,6 +15,7 @@ export default class GamesService {
         })
         }
 
+        //Haalt game ids op
     async getGameIds() {
         //TODO: fetch alle games van de de service, idealiter zonder alle details
         //TODO: ids van games opgeven via een fetch
@@ -34,6 +35,7 @@ export default class GamesService {
 
     }
 
+    //Haalt alle data op van game met bepaalde id
     async getReplay(gameId) {
         //TODO: fetch de details van een enkele game. Let wel, het staat vrij wat voor informatie je precies toont
         //zolang je maar laat zien dat je data kunt opslaan over meerdere zetten heen. Dus deze dummy-data is puur
@@ -55,6 +57,7 @@ export default class GamesService {
 
     }
 
+    //Verwijderd een game
     async removeReplay(gameId) {
         //TODO: gebruik fetch om een enkele game (bij de server) te deleten
         const options = {
