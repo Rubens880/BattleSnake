@@ -51,8 +51,6 @@ public class BattleSnake implements Serializable {
 
 
         for (Game game : games) {
-            System.out.println(id);
-            System.out.println(game.getGameId());
             if (game.getGameId().equals(id)) {
                 return game;
             }

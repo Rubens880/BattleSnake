@@ -44,7 +44,6 @@ export default class LoginService {
         }
 
         return fetch("/restservices/user", options).then((response) => {
-            console.log(response)
             if (response.ok) {
                 return response.json();
             }

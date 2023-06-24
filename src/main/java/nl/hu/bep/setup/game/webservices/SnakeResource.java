@@ -20,8 +20,6 @@ public class SnakeResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getSnake() {
-        System.out.println(BattleSnake.getMy_BattleSnake().getSnake().toString());
-        System.out.println("getSnake aangeroepen");
         return Response.ok(BattleSnake.getMy_BattleSnake().getSnake()).build();
     }
 
@@ -30,8 +28,6 @@ public class SnakeResource {
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed("user")
     public Response changeSnake(SnakeDTO snakeDTO) {
-        System.out.println("changeSnake aangeroepen.");
-
         Snake snake = BattleSnake.getMy_BattleSnake().getSnake();
         snake.updateSnake(snakeDTO.color, snakeDTO.head, snakeDTO.tail);
 
@@ -49,10 +45,6 @@ public class SnakeResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response startGame(GameDataDtos gameDataDtos) {
-
-        System.out.println(gameDataDtos.youDTO.name + " " + gameDataDtos.youDTO.length + " "
-                            + gameDataDtos.youDTO.body + " " + gameDataDtos.youDTO.head + " " +
-                            " " + gameDataDtos.youDTO.health);
 
         Game game = new Game(gameDataDtos.gameDTO.id, gameDataDtos.youDTO.name);
         BattleSnake.getMy_BattleSnake().addGame(game);
@@ -89,8 +81,6 @@ public class SnakeResource {
 
         game.setAmountOfMoves(gameDataDtos.turn);
         game.setEndingSnakeLength(gameDataDtos.youDTO.length);
-
-        System.out.println(game);
 
         return Response.ok().build();
 
@@ -133,7 +123,6 @@ public class SnakeResource {
         public String name;
         public int length;
 
-        public int health;
 
         public List<Map<String, Integer>> body;
 

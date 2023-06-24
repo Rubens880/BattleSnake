@@ -14,20 +14,7 @@ public class PersistenceManager {
 
     //Laad Battlesnake object uit de homeDirectory
     public static void loadBattleSnakeFromFile() throws IOException, ClassNotFoundException {
-//        Path homeDirectory = Path.of("/home");
-//        Path snakeStorage = Path.of("/home/snake.obj");
-//        if (!Files.exists(snakeStorage)) {
-//            return;
-//        }
-//
-//        InputStream is = Files.newInputStream(snakeStorage);
-//        ObjectInputStream ois = new ObjectInputStream(is);
-//        Snake snake = (Snake) ois.readObject();
-//        Snake snake1 = Snake.getSnake();
-//        snake1.setMy_snake(snake);
-//        is.close();
-//        ois.close();
-//        System.out.println(snake.toString());
+
         Path battleSnakeStorage = Path.of("/home/battlesnake.obj");
         if (!Files.exists(battleSnakeStorage)) {
             return;

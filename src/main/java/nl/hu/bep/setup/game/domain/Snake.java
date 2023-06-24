@@ -12,7 +12,6 @@ public class Snake implements Serializable {
     private String head = "beluga" ;
     private String tail = "curled";
 
-    private String lastMove = "";
 
     public Snake() {
 
